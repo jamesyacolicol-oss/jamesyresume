@@ -74,67 +74,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
-}
-
-.admin-wrapper:hover {
-    transform: translateY(-8px);
-}
-
-.admin-wrapper:hover .web-mockup {
-    border-color: var(--accent-purple);
-    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 
-                0 0 30px rgba(168, 85, 247, 0.15);
-}
-
-.admin-wrapper:hover .dot {
-    background: var(--accent-pink);
-    box-shadow: 0 0 8px var(--accent-pink);
-}
-
-.admin-wrapper:hover .label {
-    background: var(--grad-primary);
-    color: #fff;
-    letter-spacing: 3px; /* Subtle "expansion" effect */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.admin-wrapper:hover img {
-    filter: contrast(1.1) brightness(1.05);
-}
-
-
-
-.screen-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-.screen-card:hover {
-    /* 1. Lift the entire card slightly */
-    transform: translateY(-10px);
-}
-
-/* 2. Target the mockup inside the card specifically */
-.screen-card:hover .phone-mockup {
-    border-color: var(--accent-purple);
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 
-                0 0 20px rgba(168, 85, 247, 0.2);
-    transform: scale(1.03);
-}
-
-/* 3. Make the label pop when the card is hovered */
-.screen-card:hover .label {
-    background: var(--grad-primary);
-    color: #fff;
-    transform: translateY(5px);
-    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.3);
-}
-
-/* 4. Optional: Subtle brightness boost to the image inside */
-.screen-card:hover .phone-mockup img {
-    filter: brightness(1.1);
+    margin-top: 2rem;
 }
 
 .phone-mockup {
@@ -150,20 +90,6 @@ h1 {
 }
 
 .phone-mockup img { width: 100%; height: 100%; object-fit: cover; }
-
-.phone-mockup::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 20px;
-    background: #1e293b;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    z-index: 10;
-}
 
 .web-mockup {
     width: 100%;
@@ -209,6 +135,7 @@ h1 {
     border: 1px solid var(--border-white);
     border-radius: 35px;
     padding: 2.5rem;
+    height: 100%;
 }
 
 h2 {
@@ -235,19 +162,38 @@ h2::after { content: ''; height: 1px; flex-grow: 1; background: var(--border-whi
     gap: 15px;
 }
 
-.feature-box:hover {
-    background: var(--grad-primary);
-    border-color: transparent;
-    box-shadow: 0 10px 20px rgba(168, 85, 247, 0.4);
-    transform: translateY(-5px);
-}
-
 .spec-item {
     display: flex;
     justify-content: space-between;
     padding: 15px 0;
     border-bottom: 1px solid var(--border-white);
 }
+
+/* --- ANIMATION STYLES --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.reveal.active {
+    animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Stagger delays for grid items */
+.screen-card:nth-child(1) { animation-delay: 0.1s; }
+.screen-card:nth-child(2) { animation-delay: 0.3s; }
+.screen-card:nth-child(3) { animation-delay: 0.5s; }
 
 @media (max-width: 850px) {
     .showcase-grid { grid-template-columns: 1fr; }
